@@ -17,7 +17,7 @@ const blogPosts: BlogPost[] = [
     title: "No Bad Blood! The Reason Why Tamr Judge Finally Made Up With...",
     author: "Ema Timahe",
     date: "Sep 17, 2019",
-    image: "/blog/blog-1.jpg",
+    image: "/img/blog/blog-1.jpg",
     featured: true,
   },
   {
@@ -25,7 +25,7 @@ const blogPosts: BlogPost[] = [
     title: "Amf Cannes Red Carpet Celebrities Kendall Jenner, Pamela...",
     author: "Ema Timahe",
     date: "Sep 17, 2019",
-    image: "/blog/blog-2.jpg",
+    image: "/img/blog/blog-2.jpg",
     featured: false,
   },
   {
@@ -33,7 +33,7 @@ const blogPosts: BlogPost[] = [
     title: "Gigi Hadid, Rita Ora, Serena & Other Hot Celebs Stun At 2019...",
     author: "Ema Timahe",
     date: "Sep 17, 2019",
-    image: "/blog/blog-3.jpg",
+    image: "/img/blog/blog-3.jpg",
     featured: false,
   },
   {
@@ -41,7 +41,7 @@ const blogPosts: BlogPost[] = [
     title: "Pot Party! See Farrah Abraham Flaunt Smoking Body At...",
     author: "Ema Timahe",
     date: "Sep 17, 2019",
-    image: "/blog/blog-7.jpg",
+    image: "/img/blog/blog-7.jpg",
     featured: false,
   },
   {
@@ -50,7 +50,7 @@ const blogPosts: BlogPost[] = [
       "Ireland Baldwin Shows Off Trendy Ilse Valfre Tattoo At Stagecoach...",
     author: "Ema Timahe",
     date: "Sep 17, 2019",
-    image: "/blog/blog-4.jpg",
+    image: "/img/blog/blog-4.jpg",
     featured: false,
   },
   {
@@ -58,7 +58,7 @@ const blogPosts: BlogPost[] = [
     title: "Billboard Music Awards: Best, Worst & Wackiest Dresses On The...",
     author: "Ema Timahe",
     date: "Sep 17, 2019",
-    image: "/blog/blog-5.jpg",
+    image: "/img/blog/blog-5.jpg",
     featured: false,
   },
   {
@@ -66,7 +66,7 @@ const blogPosts: BlogPost[] = [
     title: "Stephanie Pratt Busts Out Of Teeny Black Bikini During Hawaii...",
     author: "Ema Timahe",
     date: "Sep 17, 2019",
-    image: "/blog/blog-6.jpg",
+    image: "/img/blog/blog-6.jpg",
     featured: true,
   },
   {
@@ -74,7 +74,7 @@ const blogPosts: BlogPost[] = [
     title: "Kim Kardashian Steps Out In Paris Wearing Shocking Sparkly...",
     author: "Ema Timahe",
     date: "Sep 17, 2019",
-    image: "/blog/blog-8.jpg",
+    image: "/img/blog/blog-8.jpg",
     featured: false,
   },
   {
@@ -82,7 +82,7 @@ const blogPosts: BlogPost[] = [
     title: "CMT Awards 2019 Red Carpet Arrivals Carrie Underwood, Sheryl...",
     author: "Ema Timahe",
     date: "Sep 17, 2019",
-    image: "/blog/blog-9.jpg",
+    image: "/img/blog/blog-9.jpg",
     featured: false,
   },
   {
@@ -90,7 +90,7 @@ const blogPosts: BlogPost[] = [
     title: "A-list Battle! Angelina Jolie & Lady Gaga Fighting Over Who...",
     author: "Ema Timahe",
     date: "Sep 17, 2019",
-    image: "/blog/blog-10.jpg",
+    image: "/img/blog/blog-10.jpg",
     featured: false,
   },
 ];

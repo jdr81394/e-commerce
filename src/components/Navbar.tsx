@@ -15,6 +15,14 @@ export default function Header() {
     }
   }
 
+  function handleCartNavigate() {
+    router.push("/cart");
+  }
+
+  function cursorToggle() {
+    // router.push("/cart");
+  }
+
   return (
     <>
       {/* Header */}
@@ -96,10 +104,16 @@ export default function Header() {
               >
                 Register
               </a>
-              <button className="text-gray-700 hover:text-gray-900">
+              <button
+                onClick={() => router.push("/favorites")}
+                className="text-gray-700 hover:text-gray-900 cursor-pointer"
+              >
                 <i className="fa fa-heart text-lg"></i>
               </button>
-              <button className="relative text-gray-700 hover:text-gray-900">
+              <button
+                onClick={() => handleCartNavigate()}
+                className="relative text-gray-700 hover:text-gray-900 cursor-pointer"
+              >
                 <i className="fa fa-shopping-bag text-lg"></i>
                 <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                   0

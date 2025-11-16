@@ -13,17 +13,17 @@ export default function Footer() {
             </p>
             <div className="flex gap-2">
               <img
-                src="/payment-1.png"
+                src="/img/payment/payment-1.png"
                 alt="Payment"
                 className="h-6 w-auto opacity-70"
               />
               <img
-                src="/payment-2.png"
+                src="/img/payment/payment-2.png"
                 alt="Payment"
                 className="h-6 w-auto opacity-70"
               />
               <img
-                src="/payment-3.png"
+                src="/img/payment/payment-3.png"
                 alt="Payment"
                 className="h-6 w-auto opacity-70"
               />

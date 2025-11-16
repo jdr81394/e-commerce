@@ -6,32 +6,32 @@ export default function CategoriesSection() {
       description:
         "Discover our exclusive collection of women's fashion for every occasion.",
       items: 358,
-      image: "/categories/category-1.jpg",
+      image: "/img/categories/category-1.jpg",
       large: true,
     },
     {
       id: "men",
       title: "Men's fashion",
       items: 358,
-      image: "/categories/category-2.jpg",
+      image: "/img/categories/category-2.jpg",
     },
     {
       id: "kids",
       title: "Kid's fashion",
       items: 273,
-      image: "/categories/category-3.jpg",
+      image: "/img/categories/category-3.jpg",
     },
     {
       id: "cosmetics",
       title: "Cosmetics",
       items: 159,
-      image: "/categories/category-4.jpg",
+      image: "/img/categories/category-4.jpg",
     },
     {
       id: "accessories",
       title: "Accessories",
       items: 792,
-      image: "/categories/category-5.jpg",
+      image: "/img/categories/category-5.jpg",
     },
   ];
 
