@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Header from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import InstagramSection from "@/components/InstagramSection";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -15,7 +16,9 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+  function handleChange(
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   }
@@ -60,7 +63,9 @@ export default function ContactPage() {
             <div>
               {/* Contact Info */}
               <div className="mb-12">
-                <h3 className="text-2xl font-bold text-gray-900 mb-8">Contact Info</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-8">
+                  Contact Info
+                </h3>
                 <div className="space-y-6">
                   {/* Address */}
                   <div>
@@ -98,11 +103,15 @@ export default function ContactPage() {
 
               {/* Contact Form */}
               <div>
-                <h5 className="text-2xl font-bold text-gray-900 mb-6">Send Message</h5>
+                <h5 className="text-2xl font-bold text-gray-900 mb-6">
+                  Send Message
+                </h5>
 
                 {submitted && (
                   <div className="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
-                    <p className="font-semibold">Thank you! Your message has been sent.</p>
+                    <p className="font-semibold">
+                      Thank you! Your message has been sent.
+                    </p>
                   </div>
                 )}
 
@@ -167,25 +176,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Instagram Section */}
-      <section className="py-8 bg-gray-100">
-        <div className="container mx-auto px-4">
-          <h3 className="text-3xl font-bold text-center mb-8">Follow us on Instagram</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <a
-                key={i}
-                href="#"
-                className="relative h-32 bg-gradient-to-br from-pink-500 to-orange-500 rounded overflow-hidden group"
-              >
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 bg-black/50 transition">
-                  <i className="fa fa-instagram text-white text-2xl"></i>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
+      <InstagramSection />
 
       <Footer />
     </div>
