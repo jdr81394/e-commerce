@@ -5,6 +5,7 @@ import Header from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import type { Product } from "@/lib/db";
 import InstagramSection from "@/components/InstagramSection";
+import Link from "next/link";
 
 const CATEGORIES = [
   { value: "women", label: "Women's Fashion" },
@@ -305,7 +306,7 @@ export default function ShopClient({ products }: { products: Product[] }) {
 
 function ShopProductCard({ product }: { product: Product }) {
   return (
-    <div className="group">
+    <Link href={`/product/${product.id}`} className="group cursor-pointer">
       {/* Image Container */}
       <div className="relative h-64 bg-gray-100 rounded-lg overflow-hidden mb-4">
         <div
@@ -375,6 +376,6 @@ function ShopProductCard({ product }: { product: Product }) {
           )}
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

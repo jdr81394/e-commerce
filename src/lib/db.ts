@@ -21,6 +21,11 @@ const mockProducts: Product[] = [
     description:
       "Cozy and comfortable yellow sweater, perfect for casual wear and layering",
     image: "/img/product/product-1.jpg",
+    rating: 5,
+    label: "new",
+    category: "women",
+    size: ["s", "m", "l", "xl"],
+    color: "yellows",
   },
   {
     id: "2",
@@ -29,6 +34,10 @@ const mockProducts: Product[] = [
     description:
       "Stylish lightweight pink jacket, ideal for spring and fall seasons",
     image: "/img/product/product-2.jpg",
+    rating: 5,
+    category: "women",
+    size: ["xs", "s", "m", "l"],
+    color: "reds",
   },
   {
     id: "3",
@@ -37,6 +46,11 @@ const mockProducts: Product[] = [
     description:
       "Elegant fall blouse with beautiful colors and comfortable fit",
     image: "/img/product/product-3.jpg",
+    rating: 5,
+    label: "sale",
+    category: "women",
+    size: ["s", "m", "l", "xl"],
+    color: "beige",
   },
   {
     id: "4",
@@ -45,6 +59,10 @@ const mockProducts: Product[] = [
     description:
       "Classic striped dress shirt, versatile and perfect for professional or casual settings",
     image: "/img/product/product-4.jpg",
+    rating: 5,
+    category: "men",
+    size: ["s", "m", "l", "xl"],
+    color: "blues",
   },
   {
     id: "5",
@@ -53,6 +71,10 @@ const mockProducts: Product[] = [
     description:
       "Vibrant striped yellow shirt with modern style and comfortable fabric",
     image: "/img/product/product-5.jpg",
+    rating: 5,
+    category: "men",
+    size: ["s", "m", "l", "xl"],
+    color: "yellows",
   },
   {
     id: "6",
@@ -61,6 +83,10 @@ const mockProducts: Product[] = [
     description:
       "Fun and playful dotted animal print shirt, great for casual everyday wear",
     image: "/img/product/product-6.jpg",
+    rating: 5,
+    category: "women",
+    size: ["xs", "s", "m", "l"],
+    color: "whites",
   },
   {
     id: "7",
@@ -69,6 +95,11 @@ const mockProducts: Product[] = [
     description:
       "Timeless white blouse with elegant design, perfect for both work and social occasions",
     image: "/img/product/product-7.jpg",
+    rating: 5,
+    label: "new",
+    category: "women",
+    size: ["xs", "s", "m", "l", "xl"],
+    color: "whites",
   },
   {
     id: "8",
@@ -77,6 +108,10 @@ const mockProducts: Product[] = [
     description:
       "Bright and sunny California-inspired shirt, perfect for beach trips and warm weather",
     image: "/img/product/product-8.jpg",
+    rating: 5,
+    category: "men",
+    size: ["s", "m", "l", "xl"],
+    color: "yellows",
   },
   {
     id: "9",

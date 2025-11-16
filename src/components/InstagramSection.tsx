@@ -3,7 +3,7 @@ export default function InstagramSection() {
     <section className="py-8 bg-gray-100">
       <div className="container mx-auto px-4">
         <h3 className="text-3xl font-bold text-center mb-8">
-          Follow us on Instagram
+          Check out my portfolio on Github
         </h3>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
           {Array.from({ length: 6 }).map((_, i) => (

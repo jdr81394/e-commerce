@@ -1,6 +1,9 @@
 import Navbar from "@/components/Navbar";
-import { getProductById, Product } from "@/lib/db";
-import { redirect } from "next/navigation";
+import Footer from "@/components/Footer";
+import { getProductById } from "@/lib/db";
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import ProductDetailClient from "./ProductDetailClient";
 
 export default async function Page({
   params,
@@ -8,32 +11,34 @@ export default async function Page({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const product: Product | null = await getProductById(id);
+  const product = await getProductById(id);
 
-  if (!product) redirect("/404");
+  if (!product) notFound();
 
   return (
     <>
       <Navbar />
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold mb-4">{product.name}</h1>
-        <div className="flex flex-col md:flex-row gap-8">
-          <img
-            src={product.image}
-            alt={product.name}
-            className="w-full md:w-1/2 h-auto object-cover rounded"
-          />
-          <div className="md:w-1/2">
-            <p className="text-xl text-gray-700 mb-4">{product.description}</p>
-            <p className="text-2xl font-semibold text-gray-900 mb-6">
-              ${product.price.toFixed(2)}
-            </p>
-            <button className="px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
-              Add to Cart
-            </button>
-          </div>
+
+      {/* Breadcrumb */}
+      <div className="bg-gray-100 py-4 border-b border-gray-200">
+        <div className="container mx-auto px-4">
+          <nav className="flex items-center gap-2 text-sm">
+            <Link href="/" className="text-gray-600 hover:text-gray-900">
+              <i className="fa fa-home mr-1"></i>Home
+            </Link>
+            <span className="text-gray-400">/</span>
+            <Link href="/shop" className="text-gray-600 hover:text-gray-900">
+              Shop
+            </Link>
+            <span className="text-gray-400">/</span>
+            <span className="text-gray-900 font-semibold">{product.name}</span>
+          </nav>
         </div>
       </div>
+
+      <ProductDetailClient product={product} />
+
+      <Footer />
     </>
   );
 }

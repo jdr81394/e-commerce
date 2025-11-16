@@ -16,7 +16,7 @@ export default function ProductCard({
   image,
 }: ProductCardProps) {
   return (
-    <Link href={`/product/${id}`}>
+    <Link href={`/product/${id}`} className="cursor-pointer">
       <div className="w-full h-full flex flex-col justify-between border border-gray-200 rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer bg-white">
         {image ? (
           <div className="mb-4 overflow-hidden rounded">

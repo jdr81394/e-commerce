@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function CategoriesSection() {
   const categories = [
     {
@@ -43,7 +45,8 @@ export default function CategoriesSection() {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Large category */}
-          <div
+          <Link
+            href={`/shop`}
             className="h-80 rounded-lg overflow-hidden relative group cursor-pointer"
             style={{
               backgroundImage: `url(${largeCat.image})`,
@@ -62,7 +65,7 @@ export default function CategoriesSection() {
                 Shop now
               </a>
             </div>
-          </div>
+          </Link>
 
           {/* Small categories grid */}
           <div className="grid grid-cols-2 gap-4">
