@@ -20,10 +20,10 @@ export default function ProductCard({
       <div className="w-full h-full flex flex-col justify-between border border-gray-200 rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer bg-white">
         {image ? (
           <div className="mb-4 overflow-hidden rounded">
-            {/* replace with next/image if you add real image URLs */}
-            <div className="bg-gray-100 h-48 w-full flex items-center justify-center">
+            <img src={image} alt={name} className="w-full h-48 object-cover" />
+            {/* <div className="bg-gray-100 h-48 w-full flex items-center justify-center">
               <span className="text-gray-400">{name}</span>
-            </div>
+            </div> */}
           </div>
         ) : (
           <div className="mb-4 bg-gray-100 h-48 rounded flex items-center justify-center">
