@@ -2,9 +2,15 @@
 
 import { useState } from "react";
 import type { Product } from "@/lib/db";
+import { useCart } from "@/context/CartContext";
 
 export default function ProductDetailClient({ product }: { product: Product }) {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const { addItem } = useCart();
+
+  const handleAddToCart = () => {
+    addItem({ ...product, quantity: 1 });
+  };
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -136,6 +142,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
           {/* Actions */}
           <div className="flex gap-4">
             <button
+              onClick={() => handleAddToCart()}
               disabled={product.label === "out-of-stock"}
               className={`flex-1 px-6 py-4 rounded-lg font-semibold text-lg transition ${
                 product.label === "out-of-stock"
