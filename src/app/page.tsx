@@ -15,9 +15,6 @@ export default async function Home() {
       {/* Products Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
-            New Products
-          </h2>
           <ProductList />
         </div>
       </section>

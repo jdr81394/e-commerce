@@ -5,6 +5,12 @@ export interface Product {
   price: number;
   description?: string;
   image?: string;
+  rating?: number;
+  label?: string;
+  category?: string;
+  size?: string[];
+  color?: string;
+  originalPrice?: number;
 }
 
 const mockProducts: Product[] = [
@@ -71,6 +77,102 @@ const mockProducts: Product[] = [
     description:
       "Bright and sunny California-inspired shirt, perfect for beach trips and warm weather",
     image: "/img/product/product-8.jpg",
+  },
+  {
+    id: "9",
+    name: "Furry hooded parka",
+    price: 59,
+    image: "/img/shop/shop-1.jpg",
+    rating: 5,
+    label: "new",
+    category: "women",
+    size: ["xs", "s", "m", "l"],
+    color: "black",
+  },
+  {
+    id: "10",
+    name: "Flowy striped skirt",
+    price: 49,
+    image: "/img/shop/shop-2.jpg",
+    rating: 5,
+    category: "women",
+    size: ["s", "m", "l", "xl"],
+    color: "whites",
+  },
+  {
+    id: "11",
+    name: "Croc-effect bag",
+    price: 59,
+    image: "/img/shop/shop-3.jpg",
+    rating: 5,
+    category: "accessories",
+    size: ["onesize"],
+    color: "blacks",
+  },
+  {
+    id: "12",
+    name: "Dark wash Xavi jeans",
+    price: 59,
+    image: "/img/shop/shop-4.jpg",
+    rating: 5,
+    category: "women",
+    size: ["xs", "s", "m", "l", "xl"],
+    color: "blues",
+  },
+  {
+    id: "13",
+    name: "Ankle-cuff sandals",
+    price: 49,
+    originalPrice: 59,
+    image: "/img/shop/shop-5.jpg",
+    rating: 5,
+    label: "sale",
+    category: "accessories",
+    size: ["xs", "s", "m", "l"],
+    color: "beige",
+  },
+  {
+    id: "14",
+    name: "Contrasting sunglasses",
+    price: 59,
+    image: "/img/shop/shop-6.jpg",
+    rating: 5,
+    category: "accessories",
+    size: ["onesize"],
+    color: "blacks",
+  },
+  {
+    id: "15",
+    name: "Circular pendant earrings",
+    price: 59,
+    image: "/img/shop/shop-7.jpg",
+    rating: 5,
+    category: "accessories",
+    size: ["onesize"],
+    color: "reds",
+  },
+  {
+    id: "16",
+    name: "Cotton T-Shirt",
+    price: 59,
+    image: "/img/shop/shop-8.jpg",
+    rating: 5,
+    label: "out-of-stock",
+    category: "men",
+    size: ["s", "m", "l", "xl"],
+    color: "whites",
+  },
+  {
+    id: "17",
+    name: "Water resistant zips backpack",
+    price: 49,
+    originalPrice: 59,
+    image: "/img/shop/shop-9.jpg",
+    rating: 5,
+    label: "sale",
+    category: "accessories",
+    size: ["onesize"],
+    color: "blacks",
   },
 ];
 

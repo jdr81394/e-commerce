@@ -49,22 +49,6 @@ export default function Header() {
                 </li>
                 <li>
                   <a
-                    href="/women"
-                    className="text-gray-700 hover:text-gray-900 font-medium"
-                  >
-                    Women's
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/men"
-                    className="text-gray-700 hover:text-gray-900 font-medium"
-                  >
-                    Men's
-                  </a>
-                </li>
-                <li>
-                  <a
                     href="/shop"
                     className="text-gray-700 hover:text-gray-900 font-medium"
                   >

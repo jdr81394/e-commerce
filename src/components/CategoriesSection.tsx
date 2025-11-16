@@ -56,7 +56,7 @@ export default function CategoriesSection() {
               <h2 className="text-4xl font-bold mb-3">{largeCat.title}</h2>
               <p className="text-sm mb-4 max-w-md">{largeCat.description}</p>
               <a
-                href={`/category/${largeCat.id}`}
+                href={`/shop`}
                 className="bg-white text-gray-900 px-6 py-2 rounded font-semibold hover:bg-gray-100 transition"
               >
                 Shop now
@@ -83,7 +83,7 @@ export default function CategoriesSection() {
                     {cat.items} items
                   </p>
                   <a
-                    href={`/category/${cat.id}`}
+                    href={`/shop`}
                     className="text-xs bg-white text-gray-900 px-3 py-1 rounded hover:bg-gray-100 transition"
                   >
                     Shop now
