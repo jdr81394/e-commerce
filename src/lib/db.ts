@@ -10,59 +10,67 @@ export interface Product {
 const mockProducts: Product[] = [
   {
     id: "1",
-    name: "Wireless Headphones",
+    name: "Yellow Sweater",
     price: 19.99,
-    description: "High-quality wireless headphones",
-    image: "/img/product/headphones.jpg",
+    description:
+      "Cozy and comfortable yellow sweater, perfect for casual wear and layering",
+    image: "/img/product/product-1.jpg",
   },
   {
     id: "2",
-    name: "USB-C Cable",
+    name: "Pink Light Jacket",
     price: 29.99,
-    description: "Durable USB-C charging cable",
-    image: "/img/product/cable.jpg",
+    description:
+      "Stylish lightweight pink jacket, ideal for spring and fall seasons",
+    image: "/img/product/product-2.jpg",
   },
   {
     id: "3",
-    name: "Portable Charger",
+    name: "Fall Blouse",
     price: 39.99,
-    description: "20000mAh portable battery pack",
-    image: "/img/product/charger.jpg",
+    description:
+      "Elegant fall blouse with beautiful colors and comfortable fit",
+    image: "/img/product/product-3.jpg",
   },
   {
     id: "4",
-    name: "Phone Stand",
+    name: "Striped Dress shirt",
     price: 9.99,
-    description: "Adjustable phone stand",
-    image: "/img/product/stand.jpg",
+    description:
+      "Classic striped dress shirt, versatile and perfect for professional or casual settings",
+    image: "/img/product/product-4.jpg",
   },
   {
     id: "5",
-    name: "Screen Protector",
+    name: "Striped Yellow Shirt",
     price: 14.99,
-    description: "Tempered glass screen protector",
-    image: "/img/product/protector.jpg",
+    description:
+      "Vibrant striped yellow shirt with modern style and comfortable fabric",
+    image: "/img/product/product-5.jpg",
   },
   {
     id: "6",
-    name: "Phone Case",
+    name: "Dotted Animal Shirt",
     price: 24.99,
-    description: "Protective phone case",
-    image: "/img/product/case.jpg",
+    description:
+      "Fun and playful dotted animal print shirt, great for casual everyday wear",
+    image: "/img/product/product-6.jpg",
   },
   {
     id: "7",
-    name: "Keyboard",
+    name: "White Blouse",
     price: 49.99,
-    description: "Mechanical wireless keyboard",
-    image: "/img/product/keyboard.jpg",
+    description:
+      "Timeless white blouse with elegant design, perfect for both work and social occasions",
+    image: "/img/product/product-7.jpg",
   },
   {
     id: "8",
-    name: "Mouse",
+    name: "California Sun Shirt",
     price: 34.99,
-    description: "Ergonomic wireless mouse",
-    image: "/img/product/mouse.jpg",
+    description:
+      "Bright and sunny California-inspired shirt, perfect for beach trips and warm weather",
+    image: "/img/product/product-8.jpg",
   },
 ];
 
