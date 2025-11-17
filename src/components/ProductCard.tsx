@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 interface ProductCardProps {
-  id: string;
+  id: number;
   name: string;
   price: number;
   description?: string;

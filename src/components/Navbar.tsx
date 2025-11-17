@@ -78,18 +78,6 @@ export default function Header() {
 
             {/* Right Section: Auth + Icons */}
             <div className="hidden lg:flex items-center gap-4">
-              <a
-                href="/login"
-                className="text-gray-700 hover:text-gray-900 text-sm"
-              >
-                Login
-              </a>
-              <a
-                href="/register"
-                className="text-gray-700 hover:text-gray-900 text-sm"
-              >
-                Register
-              </a>
               <button
                 onClick={() => router.push("/favorites")}
                 className="text-gray-700 hover:text-gray-900 cursor-pointer"
@@ -101,9 +89,11 @@ export default function Header() {
                 className="relative text-gray-700 hover:text-gray-900 cursor-pointer"
               >
                 <i className="fa fa-shopping-bag text-lg"></i>
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                  {totalItems}
-                </span>
+                {totalItems > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    {totalItems}
+                  </span>
+                )}
               </button>
             </div>
 
@@ -130,16 +120,6 @@ export default function Header() {
                 </a>
               </li>
               <li>
-                <a href="/women" className="text-gray-700 hover:text-gray-900">
-                  Women's
-                </a>
-              </li>
-              <li>
-                <a href="/men" className="text-gray-700 hover:text-gray-900">
-                  Men's
-                </a>
-              </li>
-              <li>
                 <a href="/shop" className="text-gray-700 hover:text-gray-900">
                   Shop
                 </a>
@@ -159,20 +139,6 @@ export default function Header() {
               </li>
             </ul>
           </nav>
-          <div className="flex gap-4 pt-4 border-t border-gray-200">
-            <a
-              href="/login"
-              className="text-gray-700 hover:text-gray-900 text-sm"
-            >
-              Login
-            </a>
-            <a
-              href="/register"
-              className="text-gray-700 hover:text-gray-900 text-sm"
-            >
-              Register
-            </a>
-          </div>
         </div>
       )}
     </>

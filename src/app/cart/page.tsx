@@ -104,14 +104,14 @@ export default function CartPage() {
                                 {item.name}
                               </h6>
                               <div className="flex gap-1">
-                                {Array.from({ length: item.rating }).map(
-                                  (_, i) => (
-                                    <i
-                                      key={i}
-                                      className="fa fa-star text-yellow-400 text-sm"
-                                    ></i>
-                                  )
-                                )}
+                                {Array.from({
+                                  length: item?.rating as number,
+                                }).map((_, i) => (
+                                  <i
+                                    key={i}
+                                    className="fa fa-star text-yellow-400 text-sm"
+                                  ></i>
+                                ))}
                               </div>
                             </div>
                           </div>

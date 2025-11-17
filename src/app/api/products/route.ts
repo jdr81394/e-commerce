@@ -1,29 +1,29 @@
 import { getProducts, getProductById } from "@/lib/db";
 
-export async function GET(request: Request) {
-  try {
-    const { searchParams } = new URL(request.url);
-    const id = searchParams.get("id");
+// export async function GET(request: Request) {
+//   try {
+//     const { searchParams } = new URL(request.url);
+//     const id = searchParams.get("id");
 
-    if (id) {
-      // Get single product by ID
-      const product = await getProductById(id);
-      if (!product) {
-        return Response.json({ error: "Product not found" }, { status: 404 });
-      }
-      return Response.json(product);
-    }
+//     if (id) {
+//       // Get single product by ID
+//       const product = await getProductById(id);
+//       if (!product) {
+//         return Response.json({ error: "Product not found" }, { status: 404 });
+//       }
+//       return Response.json(product);
+//     }
 
-    // Get all products
-    const products = await getProducts();
-    return Response.json(products);
-  } catch (error) {
-    return Response.json(
-      { error: "Failed to fetch products" },
-      { status: 500 }
-    );
-  }
-}
+//     // Get all products
+//     const products = await getProducts();
+//     return Response.json(products);
+//   } catch (error) {
+//     return Response.json(
+//       { error: "Failed to fetch products" },
+//       { status: 500 }
+//     );
+//   }
+// }
 
 export async function POST(request: Request) {
   try {
