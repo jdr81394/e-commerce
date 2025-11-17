@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { useChatBox } from "@/context/ChatContext";
 
 interface Message {
   id: number;
@@ -10,18 +11,57 @@ interface Message {
 }
 
 export default function ChatBox() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: 1,
-      text: "Hi! I'm your shopping assistant. I can help you find products, answer questions about our catalog, and provide recommendations. How can I help you today?",
-      sender: "bot",
-      timestamp: new Date(),
-    },
-  ]);
+  const { isOpen, setIsOpen } = useChatBox();
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Load messages from localStorage on mount
+  useEffect(() => {
+    const savedMessages = localStorage.getItem("chatMessages");
+    if (savedMessages) {
+      try {
+        const parsed = JSON.parse(savedMessages);
+        // Convert timestamp strings back to Date objects
+        const messagesWithDates = parsed.map((msg: Message) => ({
+          ...msg,
+          timestamp: new Date(msg.timestamp),
+        }));
+        setMessages(messagesWithDates);
+      } catch (error) {
+        console.error("Failed to load chat messages:", error);
+        // Set default welcome message if loading fails
+        setMessages([
+          {
+            id: 1,
+            text: "Hi! I'm your shopping assistant. I can help you find products, answer questions about our catalog, and provide recommendations. How can I help you today?",
+            sender: "bot",
+            timestamp: new Date(),
+          },
+        ]);
+      }
+    } else {
+      // Set default welcome message if no saved messages
+      setMessages([
+        {
+          id: 1,
+          text: "Hi! I'm your shopping assistant. I can help you find products, answer questions about our catalog, and provide recommendations. How can I help you today?",
+          sender: "bot",
+          timestamp: new Date(),
+        },
+      ]);
+    }
+    setIsLoaded(true);
+  }, []);
+
+  // Save messages to localStorage whenever they change (only after initial load)
+  useEffect(() => {
+    if (isLoaded && messages.length > 0) {
+      localStorage.setItem("chatMessages", JSON.stringify(messages));
+    }
+  }, [messages, isLoaded]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -101,6 +141,17 @@ export default function ChatBox() {
     });
   };
 
+  const clearChat = () => {
+    const welcomeMessage: Message = {
+      id: 1,
+      text: "Hi! I'm your shopping assistant. I can help you find products, answer questions about our catalog, and provide recommendations. How can I help you today?",
+      sender: "bot",
+      timestamp: new Date(),
+    };
+    setMessages([welcomeMessage]);
+    localStorage.setItem("chatMessages", JSON.stringify([welcomeMessage]));
+  };
+
   return (
     <div className="fixed bottom-6 right-6 z-50">
       {/* Chat Box */}
@@ -117,12 +168,21 @@ export default function ChatBox() {
                 <p className="text-xs text-gray-300">Online</p>
               </div>
             </div>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="text-white hover:text-gray-300 transition"
-            >
-              <i className="fa fa-times text-xl"></i>
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={clearChat}
+                className="text-white hover:text-gray-300 transition cursor-pointer"
+                title="Clear chat history"
+              >
+                <i className="fa fa-trash text-sm"></i>
+              </button>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="text-white hover:text-gray-300 transition cursor-pointer"
+              >
+                <i className="fa fa-times text-xl"></i>
+              </button>
+            </div>
           </div>
 
           {/* Messages */}

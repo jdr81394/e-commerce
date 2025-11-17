@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "@fortawesome/fontawesome-free/css/all.css";
 import { CartProvider } from "@/context/CartContext";
+import { ChatProvider } from "@/context/ChatContext";
 import ChatBox from "@/components/ChatBox";
 
 const geistSans = Geist({
@@ -31,8 +32,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <CartProvider>
-          {children}
-          <ChatBox />
+          <ChatProvider>
+            {children}
+            <ChatBox />
+          </ChatProvider>
         </CartProvider>
       </body>
     </html>
