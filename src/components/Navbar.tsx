@@ -1,5 +1,6 @@
 "use client";
 
+import { useCart } from "@/context/CartContext";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -7,6 +8,7 @@ export default function Header() {
   const router = useRouter();
   const [query, setQuery] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
+  const { totalItems } = useCart();
 
   function handleSearch(e: React.FormEvent) {
     e.preventDefault();
@@ -100,7 +102,7 @@ export default function Header() {
               >
                 <i className="fa fa-shopping-bag text-lg"></i>
                 <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                  0
+                  {totalItems}
                 </span>
               </button>
             </div>

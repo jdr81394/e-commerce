@@ -9,6 +9,8 @@ export default function ProductDetailClient({ product }: { product: Product }) {
   const { addItem } = useCart();
 
   const handleAddToCart = () => {
+    if (product.label === "out-of-stock") return;
+    if (selectedSize === null) return;
     addItem({ ...product, quantity: 1 });
   };
 
@@ -109,7 +111,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                   <button
                     key={size}
                     onClick={() => setSelectedSize(size)}
-                    className={`px-4 py-2 border-2 rounded uppercase text-sm font-semibold transition ${
+                    className={`cursor-pointer  px-4 py-2 border-2 rounded uppercase text-sm font-semibold transition ${
                       selectedSize === size
                         ? "border-gray-900 bg-gray-900 text-white"
                         : "border-gray-300 hover:border-gray-900"
@@ -144,7 +146,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
             <button
               onClick={() => handleAddToCart()}
               disabled={product.label === "out-of-stock"}
-              className={`flex-1 px-6 py-4 rounded-lg font-semibold text-lg transition ${
+              className={`cursor-pointer flex-1 px-6 py-4 rounded-lg font-semibold text-lg transition ${
                 product.label === "out-of-stock"
                   ? "bg-gray-300 text-gray-500 cursor-not-allowed"
                   : "bg-gray-900 text-white hover:bg-gray-800"
@@ -156,7 +158,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                 : "Add to Cart"}
             </button>
             <button className="px-6 py-4 border-2 border-gray-300 rounded-lg hover:border-gray-900 transition">
-              <i className="fa fa-heart text-xl"></i>
+              <i className="cursor-pointer  fa fa-heart text-xl"></i>
             </button>
           </div>
 
