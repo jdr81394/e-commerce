@@ -4,6 +4,8 @@ import { useState } from "react";
 import Header from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import InstagramSection from "@/components/InstagramSection";
+import { useCart } from "@/context/CartContext";
+import { useRouter } from "next/navigation";
 
 interface CartItem {
   id: number;
@@ -15,21 +17,14 @@ interface CartItem {
 }
 
 export default function CartPage() {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [couponCode, setCouponCode] = useState("");
   const [discount, setDiscount] = useState(0);
+  const { updateItemQuantity, items, removeItem } = useCart();
+  const router = useRouter();
 
   function updateQuantity(id: number, newQuantity: number) {
     if (newQuantity < 1) return;
-    setCartItems((items) =>
-      items.map((item) =>
-        item.id === id ? { ...item, quantity: newQuantity } : item
-      )
-    );
-  }
-
-  function removeItem(id: number) {
-    setCartItems((items) => items.filter((item) => item.id !== id));
+    updateItemQuantity(id, newQuantity);
   }
 
   function applyCoupon() {
@@ -45,7 +40,9 @@ export default function CartPage() {
     }
   }
 
-  const subtotal = cartItems.reduce(
+  const handleCheckout = () => router.push("/checkout");
+
+  const subtotal = items.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
   );
@@ -72,7 +69,7 @@ export default function CartPage() {
       {/* Shop Cart Section */}
       <section className="py-12">
         <div className="container mx-auto px-4">
-          {cartItems.length > 0 ? (
+          {items.length > 0 ? (
             <>
               {/* Cart Table */}
               <div className="mb-12 overflow-x-auto">
@@ -89,7 +86,7 @@ export default function CartPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {cartItems.map((item) => (
+                    {items.map((item) => (
                       <tr
                         key={item.id}
                         className="border-b border-gray-200 hover:bg-gray-50"
@@ -132,7 +129,7 @@ export default function CartPage() {
                               onClick={() =>
                                 updateQuantity(item.id, item.quantity - 1)
                               }
-                              className="px-2 py-1 hover:bg-gray-100"
+                              className="px-2 py-1 hover:bg-gray-100 cursor-pointer"
                             >
                               -
                             </button>
@@ -151,7 +148,7 @@ export default function CartPage() {
                               onClick={() =>
                                 updateQuantity(item.id, item.quantity + 1)
                               }
-                              className="px-2 py-1 hover:bg-gray-100"
+                              className="px-2 py-1 hover:bg-gray-100 cursor-pointer"
                             >
                               +
                             </button>
@@ -167,7 +164,7 @@ export default function CartPage() {
                         <td className="py-6 px-4">
                           <button
                             onClick={() => removeItem(item.id)}
-                            className="text-gray-500 hover:text-red-600 transition text-lg"
+                            className="text-gray-500 hover:text-red-600 transition text-lg cursor-pointer"
                           >
                             <i className="fa fa-times"></i>
                           </button>
@@ -179,12 +176,9 @@ export default function CartPage() {
               </div>
 
               {/* Action Buttons */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                <button className="border-2 border-gray-900 text-gray-900 font-semibold py-3 rounded hover:bg-gray-900 hover:text-white transition">
+              <div className="flex justify-center">
+                <button className="border-2 border-gray-900 text-gray-900 font-semibold py-3 rounded hover:bg-gray-900 hover:text-white transition cursor-pointer">
                   Continue Shopping
-                </button>
-                <button className="border-2 border-gray-900 text-gray-900 font-semibold py-3 rounded hover:bg-gray-900 hover:text-white transition flex items-center justify-center gap-2">
-                  <i className="fa fa-refresh"></i> Update cart
                 </button>
               </div>
 
@@ -205,7 +199,7 @@ export default function CartPage() {
                     />
                     <button
                       onClick={applyCoupon}
-                      className="w-full bg-gray-900 text-white font-semibold py-3 rounded hover:bg-gray-800 transition"
+                      className="w-full bg-gray-900 text-white font-semibold py-3 rounded hover:bg-gray-800 transition cursor-pointer"
                     >
                       Apply
                     </button>
@@ -238,7 +232,10 @@ export default function CartPage() {
                         <span>${total.toFixed(2)}</span>
                       </div>
                     </div>
-                    <button className="w-full bg-gray-900 text-white font-semibold py-3 rounded hover:bg-gray-800 transition">
+                    <button
+                      onClick={handleCheckout}
+                      className="w-full bg-gray-900 text-white font-semibold py-3 rounded hover:bg-gray-800 transition cursor-pointer"
+                    >
                       Proceed to checkout
                     </button>
                   </div>
@@ -251,7 +248,7 @@ export default function CartPage() {
               <p className="text-xl text-gray-600 mb-6">Your cart is empty</p>
               <a
                 href="/shop"
-                className="inline-block bg-gray-900 text-white font-semibold px-8 py-3 rounded hover:bg-gray-800 transition"
+                className="inline-block bg-gray-900 text-white font-semibold px-8 py-3 rounded hover:bg-gray-800 transition cursor-pointer"
               >
                 Continue Shopping
               </a>

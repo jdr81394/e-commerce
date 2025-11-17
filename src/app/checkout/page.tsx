@@ -4,6 +4,7 @@ import { useState } from "react";
 import Header from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import InstagramSection from "@/components/InstagramSection";
+import { useCart } from "@/context/CartContext";
 
 interface CheckoutForm {
   firstName: string;
@@ -24,6 +25,8 @@ interface CheckoutForm {
 }
 
 export default function CheckoutPage() {
+  const { items, totalPrice } = useCart();
+
   const [formData, setFormData] = useState<CheckoutForm>({
     firstName: "",
     lastName: "",
@@ -71,18 +74,8 @@ export default function CheckoutPage() {
     }
   }
 
-  const cartItems = [
-    { id: 1, name: "Chain bucket bag", price: 300.0, qty: 1 },
-    { id: 2, name: "Zip-pockets pebbled tote briefcase", price: 170.0, qty: 1 },
-    { id: 3, name: "Black jean", price: 170.0, qty: 1 },
-    { id: 4, name: "Cotton shirt", price: 110.0, qty: 1 },
-  ];
-
-  const subtotal = cartItems.reduce(
-    (sum, item) => sum + item.price * item.qty,
-    0
-  );
-  const total = subtotal;
+  const subtotal = totalPrice;
+  const total = totalPrice; // Could add shipping/tax here
 
   return (
     <div>
@@ -340,13 +333,15 @@ export default function CheckoutPage() {
                     <span>Total</span>
                   </div>
                   <ul className="space-y-3">
-                    {cartItems.map((item) => (
+                    {items.map((item) => (
                       <li
                         key={item.id}
                         className="flex justify-between text-sm text-gray-600"
                       >
-                        <span>{item.name}</span>
-                        <span>${(item.price * item.qty).toFixed(2)}</span>
+                        <span>
+                          {item.name} × {item.quantity}
+                        </span>
+                        <span>${(item.price * item.quantity).toFixed(2)}</span>
                       </li>
                     ))}
                   </ul>
@@ -404,7 +399,7 @@ export default function CheckoutPage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-gray-900 hover:bg-gray-800 text-white font-bold py-3 rounded transition disabled:opacity-50"
+                  className="w-full bg-gray-900 hover:bg-gray-800 text-white font-bold py-3 rounded transition disabled:opacity-50 cursor-pointer"
                 >
                   {loading ? "Processing..." : "Place Order"}
                 </button>

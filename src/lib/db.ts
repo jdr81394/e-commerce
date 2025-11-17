@@ -1,6 +1,6 @@
 // Mock database - Replace with your real database (Prisma, MongoDB, etc.)
 export interface Product {
-  id: string;
+  id: number;
   name: string;
   price: number;
   description?: string;
@@ -15,7 +15,7 @@ export interface Product {
 
 const mockProducts: Product[] = [
   {
-    id: "1",
+    id: 1,
     name: "Yellow Sweater",
     price: 19.99,
     description:
@@ -28,7 +28,7 @@ const mockProducts: Product[] = [
     color: "yellows",
   },
   {
-    id: "2",
+    id: 2,
     name: "Pink Light Jacket",
     price: 29.99,
     description:
@@ -40,7 +40,7 @@ const mockProducts: Product[] = [
     color: "reds",
   },
   {
-    id: "3",
+    id: 3,
     name: "Fall Blouse",
     price: 39.99,
     description:
@@ -53,7 +53,7 @@ const mockProducts: Product[] = [
     color: "beige",
   },
   {
-    id: "4",
+    id: 4,
     name: "Striped Dress shirt",
     price: 9.99,
     description:
@@ -65,7 +65,7 @@ const mockProducts: Product[] = [
     color: "blues",
   },
   {
-    id: "5",
+    id: 5,
     name: "Striped Yellow Shirt",
     price: 14.99,
     description:
@@ -77,7 +77,7 @@ const mockProducts: Product[] = [
     color: "yellows",
   },
   {
-    id: "6",
+    id: 6,
     name: "Dotted Animal Shirt",
     price: 24.99,
     description:
@@ -89,7 +89,7 @@ const mockProducts: Product[] = [
     color: "whites",
   },
   {
-    id: "7",
+    id: 7,
     name: "White Blouse",
     price: 49.99,
     description:
@@ -102,7 +102,7 @@ const mockProducts: Product[] = [
     color: "whites",
   },
   {
-    id: "8",
+    id: 8,
     name: "California Sun Shirt",
     price: 34.99,
     description:
@@ -114,7 +114,7 @@ const mockProducts: Product[] = [
     color: "yellows",
   },
   {
-    id: "9",
+    id: 9,
     name: "Furry hooded parka",
     price: 59,
     image: "/img/shop/shop-1.jpg",
@@ -125,7 +125,7 @@ const mockProducts: Product[] = [
     color: "black",
   },
   {
-    id: "10",
+    id: 10,
     name: "Flowy striped skirt",
     price: 49,
     image: "/img/shop/shop-2.jpg",
@@ -135,7 +135,7 @@ const mockProducts: Product[] = [
     color: "whites",
   },
   {
-    id: "11",
+    id: 11,
     name: "Croc-effect bag",
     price: 59,
     image: "/img/shop/shop-3.jpg",
@@ -145,7 +145,7 @@ const mockProducts: Product[] = [
     color: "blacks",
   },
   {
-    id: "12",
+    id: 12,
     name: "Dark wash Xavi jeans",
     price: 59,
     image: "/img/shop/shop-4.jpg",
@@ -155,7 +155,7 @@ const mockProducts: Product[] = [
     color: "blues",
   },
   {
-    id: "13",
+    id: 13,
     name: "Ankle-cuff sandals",
     price: 49,
     originalPrice: 59,
@@ -167,7 +167,7 @@ const mockProducts: Product[] = [
     color: "beige",
   },
   {
-    id: "14",
+    id: 14,
     name: "Contrasting sunglasses",
     price: 59,
     image: "/img/shop/shop-6.jpg",
@@ -177,7 +177,7 @@ const mockProducts: Product[] = [
     color: "blacks",
   },
   {
-    id: "15",
+    id: 15,
     name: "Circular pendant earrings",
     price: 59,
     image: "/img/shop/shop-7.jpg",
@@ -187,7 +187,7 @@ const mockProducts: Product[] = [
     color: "reds",
   },
   {
-    id: "16",
+    id: 16,
     name: "Cotton T-Shirt",
     price: 59,
     image: "/img/shop/shop-8.jpg",
@@ -198,7 +198,7 @@ const mockProducts: Product[] = [
     color: "whites",
   },
   {
-    id: "17",
+    id: 17,
     name: "Water resistant zips backpack",
     price: 49,
     originalPrice: 59,
@@ -217,7 +217,7 @@ export async function getProducts(): Promise<Product[]> {
   return mockProducts;
 }
 
-export async function getProductById(id: string): Promise<Product | null> {
+export async function getProductById(id: number): Promise<Product | null> {
   await new Promise((resolve) => setTimeout(resolve, 100));
   return mockProducts.find((p) => p.id === id) || null;
 }

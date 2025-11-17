@@ -6,8 +6,8 @@ import { createContext, useContext, useEffect, useState } from "react";
 interface CartContextType {
   items: CartItem[];
   addItem: (item: CartItem) => void;
-  removeItem: (id: string) => void;
-  updateItemQuantity: (id: string, quantity: number) => void;
+  removeItem: (id: number) => void;
+  updateItemQuantity: (id: number, quantity: number) => void;
   clearCart: () => void;
   totalItems: number;
   totalPrice: number;
@@ -56,11 +56,11 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     setItems((prevItems) => [...prevItems, item]);
   };
 
-  const removeItem = (id: string) => {
+  const removeItem = (id: number) => {
     setItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
-  const updateItemQuantity = (id: string, quantity: number) => {
+  const updateItemQuantity = (id: number, quantity: number) => {
     setItems((prevItems) =>
       prevItems.map((item) => (item.id === id ? { ...item, quantity } : item))
     );
