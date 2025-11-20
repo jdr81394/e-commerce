@@ -157,9 +157,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                 ? "Out of Stock"
                 : "Add to Cart"}
             </button>
-            <button className="px-6 py-4 border-2 border-gray-300 rounded-lg hover:border-gray-900 transition">
-              <i className="cursor-pointer  fa fa-heart text-xl"></i>
-            </button>
+            {/* Favorite button removed */}
           </div>
 
           {/* Product Info */}

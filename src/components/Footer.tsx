@@ -76,11 +76,7 @@ export default function Footer() {
                   Checkout
                 </a>
               </li>
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Wishlist
-                </a>
-              </li>
+              {/* Wishlist link removed */}
             </ul>
           </div>
 
@@ -124,8 +120,7 @@ export default function Footer() {
         <div className="border-t border-gray-800 pt-6 text-center text-gray-400 text-sm">
           <p>
             Copyright © {new Date().getFullYear()} All rights reserved | This
-            template is made with <i className="fa fa-heart text-red-500"></i>{" "}
-            by ASHION
+            template is made with care by ASHION
           </p>
         </div>
       </div>

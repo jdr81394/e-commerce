@@ -76,17 +76,12 @@ export default function Header() {
               </ul>
             </nav>
 
-            {/* Right Section: Auth + Icons */}
-            <div className="hidden lg:flex items-center gap-4">
-              <button
-                onClick={() => router.push("/favorites")}
-                className="text-gray-700 hover:text-gray-900 cursor-pointer"
-              >
-                <i className="fa fa-heart text-lg"></i>
-              </button>
+            {/* Right Section: Cart Icon + Mobile Menu Toggle */}
+            <div className="flex items-center gap-4">
+              {/* Cart Button - visible on all screen sizes */}
               <button
                 onClick={() => handleCartNavigate()}
-                className="relative text-gray-700 hover:text-gray-900 cursor-pointer"
+                className="hidden md:block relative text-gray-700 hover:text-gray-900 cursor-pointer"
               >
                 <i className="fa fa-shopping-bag text-lg"></i>
                 {totalItems > 0 && (
@@ -95,16 +90,16 @@ export default function Header() {
                   </span>
                 )}
               </button>
-            </div>
 
-            {/* Mobile Menu Toggle */}
-            <button
-              className="md:hidden text-gray-900"
-              onClick={() => setMenuOpen(!menuOpen)}
-              aria-label="Toggle menu"
-            >
-              <i className="fa fa-bars text-2xl"></i>
-            </button>
+              {/* Mobile Menu Toggle */}
+              <button
+                className="md:hidden text-gray-900"
+                onClick={() => setMenuOpen(!menuOpen)}
+                aria-label="Toggle menu"
+              >
+                <i className="fa fa-bars text-2xl"></i>
+              </button>
+            </div>
           </div>
         </div>
       </header>
@@ -136,6 +131,23 @@ export default function Header() {
                 >
                   Contact
                 </a>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    handleCartNavigate();
+                    setMenuOpen(false);
+                  }}
+                  className="flex items-center gap-2 text-gray-700 hover:text-gray-900 cursor-pointer"
+                >
+                  <i className="fa fa-shopping-bag"></i>
+                  <span>Cart</span>
+                  {totalItems > 0 && (
+                    <span className="bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                      {totalItems}
+                    </span>
+                  )}
+                </button>
               </li>
             </ul>
           </nav>

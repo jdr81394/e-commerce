@@ -337,9 +337,6 @@ function ShopProductCard({ product }: { product: Product }) {
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition flex items-end justify-center pb-4 opacity-0 group-hover:opacity-100">
           <div className="flex gap-3">
             <button className="bg-white text-gray-900 p-2 rounded-full hover:bg-gray-100 transition">
-              <i className="fa fa-heart"></i>
-            </button>
-            <button className="bg-white text-gray-900 p-2 rounded-full hover:bg-gray-100 transition">
               <i className="fa fa-shopping-bag"></i>
             </button>
             <button className="bg-white text-gray-900 p-2 rounded-full hover:bg-gray-100 transition">
