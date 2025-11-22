@@ -1,11 +1,13 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { useRouter } from "next/navigation";
 import Header from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import type { Product } from "@/lib/db";
+import { type Product, type PaginatedProducts } from "@/lib/db";
 import InstagramSection from "@/components/InstagramSection";
 import Link from "next/link";
+import Pagination from "@/components/Pagination";
 
 const CATEGORIES = [
   { value: "women", label: "Women's Fashion" },
@@ -26,16 +28,22 @@ const COLORS = [
   { value: "yellows", label: "Yellows" },
 ];
 
-const PRODUCTS_PER_PAGE = 9;
+export default function ShopClient({
+  paginatedData,
+}: {
+  paginatedData: PaginatedProducts;
+}) {
+  const { products, total, page, limit, totalPages } = paginatedData;
 
-export default function ShopClient({ products }: { products: Product[] }) {
+  const router = useRouter();
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
   const [selectedColors, setSelectedColors] = useState<string[]>([]);
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 100]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 200]);
+  const [currentPage, setCurrentPage] = useState(page);
+  const [itemsPerPage, setItemsPerPage] = useState(limit);
 
-  // Filter products
+  // Filter products (client-side filtering on paginated results)
   const filteredProducts = useMemo(() => {
     return products.filter((product) => {
       const categoryMatch =
@@ -55,25 +63,61 @@ export default function ShopClient({ products }: { products: Product[] }) {
     });
   }, [products, selectedCategories, priceRange, selectedSizes, selectedColors]);
 
-  // Pagination
-  const totalPages = Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE);
-  const paginatedProducts = filteredProducts.slice(
-    (currentPage - 1) * PRODUCTS_PER_PAGE,
-    currentPage * PRODUCTS_PER_PAGE
-  );
+  function handlePageChange(page: number) {
+    setCurrentPage(page);
+    router.push(
+      `/shop?page=${page}&limit=${itemsPerPage}&categories=${selectedCategories.join(
+        ","
+      )}`
+    );
+  }
+
+  function handleLimitChange(newLimit: number) {
+    setItemsPerPage(newLimit);
+    setCurrentPage(1);
+    router.push(
+      `/shop?page=${page}&limit=${newLimit}&categories=${selectedCategories.join(
+        ","
+      )}`
+    );
+  }
 
   function toggleCategory(cat: string) {
-    setSelectedCategories((prev) =>
-      prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat]
-    );
     setCurrentPage(1);
+
+    setSelectedCategories((prev) => {
+      let newRouteCategories: string;
+      if (prev.includes(cat)) {
+        newRouteCategories = prev.filter((c) => c !== cat).join(",");
+        router.push(
+          `/shop?page=1&limit=${itemsPerPage}${
+            newRouteCategories.length > 0
+              ? `&categories=${newRouteCategories}`
+              : ""
+          }`
+        );
+        return prev.filter((c) => c !== cat);
+      } else {
+        newRouteCategories = [...prev, cat].join(",");
+        router.push(
+          `/shop?page=1&limit=${itemsPerPage}${
+            newRouteCategories.length > 0
+              ? `&categories=${newRouteCategories}`
+              : ""
+          }`
+        );
+        return [...prev, cat];
+      }
+    });
+    console.log("selectedCategories: ", selectedCategories);
   }
 
   function toggleSize(size: string) {
+    setCurrentPage(1);
+
     setSelectedSizes((prev) =>
       prev.includes(size) ? prev.filter((s) => s !== size) : [...prev, size]
     );
-    setCurrentPage(1);
   }
 
   function toggleColor(color: string) {
@@ -237,53 +281,52 @@ export default function ShopClient({ products }: { products: Product[] }) {
 
             {/* Products Grid */}
             <div className="lg:col-span-3">
-              <div className="mb-6 flex justify-between items-center">
+              <div className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <h2 className="text-2xl font-bold text-gray-900">
-                  {filteredProducts.length} Products
+                  {total} Products
                 </h2>
-                <button className="text-gray-600 hover:text-gray-900 text-sm">
-                  <i className="fa fa-sliders mr-2"></i>More Filters
-                </button>
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
+                    <label className="text-sm text-gray-600">Show:</label>
+                    <select
+                      value={itemsPerPage}
+                      onChange={(e) =>
+                        handleLimitChange(Number(e.target.value))
+                      }
+                      className="px-3 py-2 border border-gray-300 rounded text-sm cursor-pointer focus:outline-none focus:ring-2 focus:ring-gray-900"
+                    >
+                      <option value={6}>6</option>
+                      <option value={12}>12</option>
+                      <option value={24}>24</option>
+                      <option value={48}>48</option>
+                    </select>
+                  </div>
+                </div>
               </div>
 
-              {paginatedProducts.length > 0 ? (
+              {filteredProducts.length > 0 ? (
                 <>
+                  {/* Pagination - Top */}
+                  <div className="mb-6">
+                    <Pagination
+                      currentPage={currentPage}
+                      totalPages={totalPages}
+                      onPageChange={handlePageChange}
+                    />
+                  </div>
+
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                    {paginatedProducts.map((product) => (
+                    {filteredProducts.map((product) => (
                       <ShopProductCard key={product.id} product={product} />
                     ))}
                   </div>
 
-                  {/* Pagination */}
-                  {totalPages > 1 && (
-                    <div className="flex justify-center gap-2">
-                      {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                        (page) => (
-                          <button
-                            key={page}
-                            onClick={() => setCurrentPage(page)}
-                            className={`px-3 py-2 rounded border transition ${
-                              currentPage === page
-                                ? "bg-gray-900 text-white border-gray-900"
-                                : "border-gray-300 hover:border-gray-900"
-                            }`}
-                          >
-                            {page}
-                          </button>
-                        )
-                      )}
-                      {totalPages > 1 && (
-                        <button
-                          onClick={() =>
-                            setCurrentPage((p) => Math.min(p + 1, totalPages))
-                          }
-                          className="px-3 py-2 rounded border border-gray-300 hover:border-gray-900"
-                        >
-                          <i className="fa fa-angle-right"></i>
-                        </button>
-                      )}
-                    </div>
-                  )}
+                  {/* Pagination - Bottom */}
+                  <Pagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={handlePageChange}
+                  />
                 </>
               ) : (
                 <div className="text-center py-12">
