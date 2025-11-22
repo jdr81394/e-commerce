@@ -7,32 +7,32 @@ export default function CategoriesSection() {
       title: "Women's fashion",
       description:
         "Discover our exclusive collection of women's fashion for every occasion.",
-      items: 358,
+      items: 35,
       image: "/img/categories/category-1.jpg",
       large: true,
     },
     {
       id: "men",
       title: "Men's fashion",
-      items: 358,
+      items: 32,
       image: "/img/categories/category-2.jpg",
     },
     {
       id: "kids",
       title: "Kid's fashion",
-      items: 273,
+      items: 0,
       image: "/img/categories/category-3.jpg",
     },
     {
       id: "cosmetics",
       title: "Cosmetics",
-      items: 159,
+      items: 0,
       image: "/img/categories/category-4.jpg",
     },
     {
       id: "accessories",
       title: "Accessories",
-      items: 792,
+      items: 33,
       image: "/img/categories/category-5.jpg",
     },
   ];
@@ -66,31 +66,33 @@ export default function CategoriesSection() {
 
           {/* Small categories grid */}
           <div className="grid grid-cols-2 gap-4">
-            {smallCats.map((cat) => (
-              <div
-                key={cat.id}
-                className="h-40 rounded-lg overflow-hidden relative group cursor-pointer"
-                style={{
-                  backgroundImage: `url(${cat.image})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-              >
-                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition"></div>
-                <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center p-4">
-                  <h4 className="text-lg font-bold mb-1">{cat.title}</h4>
-                  <p className="text-xs text-gray-200 mb-3">
-                    {cat.items} items
-                  </p>
-                  <a
-                    href={`/shop`}
-                    className="text-xs bg-white text-gray-900 px-3 py-1 rounded hover:bg-gray-100 transition"
-                  >
-                    Shop now
-                  </a>
-                </div>
-              </div>
-            ))}
+            {smallCats.map((cat) => {
+              const url = `/shop?categories=${cat.id}`;
+
+              return (
+                <Link
+                  key={cat.id}
+                  href={url}
+                  className="h-40 rounded-lg overflow-hidden relative group cursor-pointer"
+                  style={{
+                    backgroundImage: `url(${cat.image})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                >
+                  <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition"></div>
+                  <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center p-4">
+                    <h4 className="text-lg font-bold mb-1">{cat.title}</h4>
+                    <p className="text-xs text-gray-200 mb-3">
+                      {cat.items} items
+                    </p>
+                    <div className="text-xs bg-white text-gray-900 px-3 py-1 rounded hover:bg-gray-100 transition">
+                      Shop now
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>

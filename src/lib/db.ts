@@ -1181,6 +1181,7 @@ export interface PaginatedProducts {
   page: number;
   limit: number;
   totalPages: number;
+  params?: PaginationParams;
 }
 
 export async function getProducts(

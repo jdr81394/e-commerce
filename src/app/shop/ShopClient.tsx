@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useMemo, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Header from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { type Product, type PaginatedProducts } from "@/lib/db";
@@ -36,12 +36,31 @@ export default function ShopClient({
   const { products, total, page, limit, totalPages } = paginatedData;
 
   const router = useRouter();
+  const searchParams = useSearchParams();
+
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
   const [selectedColors, setSelectedColors] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 200]);
   const [currentPage, setCurrentPage] = useState(page);
   const [itemsPerPage, setItemsPerPage] = useState(limit);
+
+  // Initialize state from URL params on mount
+  useEffect(() => {
+    const categoriesParam = searchParams.get("categories");
+    const sizesParam = searchParams.get("sizes");
+    const colorsParam = searchParams.get("colors");
+
+    if (categoriesParam) {
+      setSelectedCategories(categoriesParam.split(","));
+    }
+    if (sizesParam) {
+      setSelectedSizes(sizesParam.split(","));
+    }
+    if (colorsParam) {
+      setSelectedColors(colorsParam.split(","));
+    }
+  }, [searchParams]);
 
   // Filter products (client-side filtering on paginated results)
   const filteredProducts = useMemo(() => {
