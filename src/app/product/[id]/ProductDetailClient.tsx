@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { Product } from "@/lib/db";
 import { useCart } from "@/context/CartContext";
+import toast from "react-hot-toast";
 
 export default function ProductDetailClient({ product }: { product: Product }) {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
@@ -10,8 +11,12 @@ export default function ProductDetailClient({ product }: { product: Product }) {
 
   const handleAddToCart = () => {
     if (product.label === "out-of-stock") return;
-    if (selectedSize === null) return;
+    if (selectedSize === null) {
+      toast.error("Please select a size");
+      return;
+    }
     addItem({ ...product, quantity: 1 });
+    toast.success(`${product.name} added to cart!`);
   };
 
   return (

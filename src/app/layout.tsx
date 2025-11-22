@@ -5,6 +5,7 @@ import "@fortawesome/fontawesome-free/css/all.css";
 import { CartProvider } from "@/context/CartContext";
 import { ChatProvider } from "@/context/ChatContext";
 import ChatBox from "@/components/ChatBox";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,6 +36,7 @@ export default function RootLayout({
           <ChatProvider>
             {children}
             <ChatBox />
+            <Toaster position="top-right" />
           </ChatProvider>
         </CartProvider>
       </body>
