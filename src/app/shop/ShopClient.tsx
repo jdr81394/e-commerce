@@ -101,76 +101,68 @@ export default function ShopClient({
   function toggleCategory(cat: string) {
     setCurrentPage(1);
 
-    setSelectedCategories((prev) => {
-      const newCategories = prev.includes(cat)
-        ? prev.filter((c) => c !== cat)
-        : [...prev, cat];
+    const newCategories = selectedCategories.includes(cat)
+      ? selectedCategories.filter((c) => c !== cat)
+      : [...selectedCategories, cat];
 
-      const categoriesParam =
-        newCategories.length > 0
-          ? `&categories=${newCategories.join(",")}`
-          : "";
-      const sizesParam =
-        selectedSizes.length > 0 ? `&sizes=${selectedSizes.join(",")}` : "";
-      const colorsParam =
-        selectedColors.length > 0 ? `&colors=${selectedColors.join(",")}` : "";
+    setSelectedCategories(newCategories);
 
-      router.push(
-        `/shop?page=1&limit=${itemsPerPage}${categoriesParam}${sizesParam}${colorsParam}`
-      );
+    const categoriesParam =
+      newCategories.length > 0 ? `&categories=${newCategories.join(",")}` : "";
+    const sizesParam =
+      selectedSizes.length > 0 ? `&sizes=${selectedSizes.join(",")}` : "";
+    const colorsParam =
+      selectedColors.length > 0 ? `&colors=${selectedColors.join(",")}` : "";
 
-      return newCategories;
-    });
+    router.push(
+      `/shop?page=1&limit=${itemsPerPage}${categoriesParam}${sizesParam}${colorsParam}`
+    );
   }
 
   function toggleSize(size: string) {
     setCurrentPage(1);
 
-    setSelectedSizes((prev) => {
-      const newSizes = prev.includes(size)
-        ? prev.filter((s) => s !== size)
-        : [...prev, size];
+    const newSizes = selectedSizes.includes(size)
+      ? selectedSizes.filter((s) => s !== size)
+      : [...selectedSizes, size];
 
-      const categoriesParam =
-        selectedCategories.length > 0
-          ? `&categories=${selectedCategories.join(",")}`
-          : "";
-      const sizesParam =
-        newSizes.length > 0 ? `&sizes=${newSizes.join(",")}` : "";
-      const colorsParam =
-        selectedColors.length > 0 ? `&colors=${selectedColors.join(",")}` : "";
+    setSelectedSizes(newSizes);
 
-      router.push(
-        `/shop?page=1&limit=${itemsPerPage}${categoriesParam}${sizesParam}${colorsParam}`
-      );
+    const categoriesParam =
+      selectedCategories.length > 0
+        ? `&categories=${selectedCategories.join(",")}`
+        : "";
+    const sizesParam =
+      newSizes.length > 0 ? `&sizes=${newSizes.join(",")}` : "";
+    const colorsParam =
+      selectedColors.length > 0 ? `&colors=${selectedColors.join(",")}` : "";
 
-      return newSizes;
-    });
+    router.push(
+      `/shop?page=1&limit=${itemsPerPage}${categoriesParam}${sizesParam}${colorsParam}`
+    );
   }
 
   function toggleColor(color: string) {
     setCurrentPage(1);
 
-    setSelectedColors((prev) => {
-      const newColors = prev.includes(color)
-        ? prev.filter((c) => c !== color)
-        : [...prev, color];
+    const newColors = selectedColors.includes(color)
+      ? selectedColors.filter((c) => c !== color)
+      : [...selectedColors, color];
 
-      const categoriesParam =
-        selectedCategories.length > 0
-          ? `&categories=${selectedCategories.join(",")}`
-          : "";
-      const sizesParam =
-        selectedSizes.length > 0 ? `&sizes=${selectedSizes.join(",")}` : "";
-      const colorsParam =
-        newColors.length > 0 ? `&colors=${newColors.join(",")}` : "";
+    setSelectedColors(newColors);
 
-      router.push(
-        `/shop?page=1&limit=${itemsPerPage}${categoriesParam}${sizesParam}${colorsParam}`
-      );
+    const categoriesParam =
+      selectedCategories.length > 0
+        ? `&categories=${selectedCategories.join(",")}`
+        : "";
+    const sizesParam =
+      selectedSizes.length > 0 ? `&sizes=${selectedSizes.join(",")}` : "";
+    const colorsParam =
+      newColors.length > 0 ? `&colors=${newColors.join(",")}` : "";
 
-      return newColors;
-    });
+    router.push(
+      `/shop?page=1&limit=${itemsPerPage}${categoriesParam}${sizesParam}${colorsParam}`
+    );
   }
 
   return (
