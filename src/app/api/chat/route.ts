@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
-import { getProducts } from "@/lib/db";
+import { getProducts, PaginatedProducts } from "@/lib/db";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -11,13 +11,14 @@ export async function POST(req: NextRequest) {
     const { message, conversationHistory } = await req.json();
 
     // Get all products to provide context to the AI
-    const products = await getProducts();
-
+    const productsObject: PaginatedProducts = await getProducts();
+    const { products } = productsObject;
     // Create a system message with product knowledge
     const productContext = `You are a helpful shopping assistant for a fictional e-commerce store. 
     This project is suppose to demonstrate Jake Roberts' skillset as a developer. 
     You have knowledge of the following products:
 
+    
 ${products
   .map(
     (p) =>
