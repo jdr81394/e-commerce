@@ -1171,6 +1171,8 @@ export interface PaginationParams {
   page?: number;
   limit?: number;
   categories?: string[];
+  sizes?: string[];
+  colors?: string[];
 }
 
 export interface PaginatedProducts {
@@ -1190,25 +1192,33 @@ export async function getProducts(
   const page = params?.page || 1;
   const limit = params?.limit || 12;
   const categories = params?.categories || [];
+  const sizes = params?.sizes || [];
+  const colors = params?.colors || [];
   const startIndex = (page - 1) * limit;
   const endIndex = startIndex + limit;
-  let total = 0;
 
-  const paginatedProducts = mockProducts
+  const filteredProducts = mockProducts
     .filter((product) => {
       if (product.category === undefined) return false;
-
       if (categories.length === 0) {
-        total++;
         return true;
       }
-      if (categories.includes(product.category)) {
-        total++;
-        return true;
-      } else return false;
+      return categories.includes(product.category);
     })
-    .slice(startIndex, endIndex);
+    .filter((product) => {
+      if (product.size === undefined) return false;
+      if (sizes.length === 0) return true;
+      return sizes.some((size) => product.size!.includes(size));
+    })
+    .filter((product) => {
+      if (product.color === undefined) return false;
+      if (colors.length === 0) return true;
+      return colors.includes(product.color);
+    });
 
+  const paginatedProducts = filteredProducts.slice(startIndex, endIndex);
+
+  const total = filteredProducts.length;
   const totalPages = Math.ceil(total / limit);
 
   return {

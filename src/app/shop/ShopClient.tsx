@@ -65,20 +65,36 @@ export default function ShopClient({
 
   function handlePageChange(page: number) {
     setCurrentPage(page);
+
+    const categoriesParam =
+      selectedCategories.length > 0
+        ? `&categories=${selectedCategories.join(",")}`
+        : "";
+    const sizesParam =
+      selectedSizes.length > 0 ? `&sizes=${selectedSizes.join(",")}` : "";
+    const colorsParam =
+      selectedColors.length > 0 ? `&colors=${selectedColors.join(",")}` : "";
+
     router.push(
-      `/shop?page=${page}&limit=${itemsPerPage}&categories=${selectedCategories.join(
-        ","
-      )}`
+      `/shop?page=${page}&limit=${itemsPerPage}${categoriesParam}${sizesParam}${colorsParam}`
     );
   }
 
   function handleLimitChange(newLimit: number) {
     setItemsPerPage(newLimit);
     setCurrentPage(1);
+
+    const categoriesParam =
+      selectedCategories.length > 0
+        ? `&categories=${selectedCategories.join(",")}`
+        : "";
+    const sizesParam =
+      selectedSizes.length > 0 ? `&sizes=${selectedSizes.join(",")}` : "";
+    const colorsParam =
+      selectedColors.length > 0 ? `&colors=${selectedColors.join(",")}` : "";
+
     router.push(
-      `/shop?page=${page}&limit=${newLimit}&categories=${selectedCategories.join(
-        ","
-      )}`
+      `/shop?page=1&limit=${newLimit}${categoriesParam}${sizesParam}${colorsParam}`
     );
   }
 
@@ -86,45 +102,75 @@ export default function ShopClient({
     setCurrentPage(1);
 
     setSelectedCategories((prev) => {
-      let newRouteCategories: string;
-      if (prev.includes(cat)) {
-        newRouteCategories = prev.filter((c) => c !== cat).join(",");
-        router.push(
-          `/shop?page=1&limit=${itemsPerPage}${
-            newRouteCategories.length > 0
-              ? `&categories=${newRouteCategories}`
-              : ""
-          }`
-        );
-        return prev.filter((c) => c !== cat);
-      } else {
-        newRouteCategories = [...prev, cat].join(",");
-        router.push(
-          `/shop?page=1&limit=${itemsPerPage}${
-            newRouteCategories.length > 0
-              ? `&categories=${newRouteCategories}`
-              : ""
-          }`
-        );
-        return [...prev, cat];
-      }
+      const newCategories = prev.includes(cat)
+        ? prev.filter((c) => c !== cat)
+        : [...prev, cat];
+
+      const categoriesParam =
+        newCategories.length > 0
+          ? `&categories=${newCategories.join(",")}`
+          : "";
+      const sizesParam =
+        selectedSizes.length > 0 ? `&sizes=${selectedSizes.join(",")}` : "";
+      const colorsParam =
+        selectedColors.length > 0 ? `&colors=${selectedColors.join(",")}` : "";
+
+      router.push(
+        `/shop?page=1&limit=${itemsPerPage}${categoriesParam}${sizesParam}${colorsParam}`
+      );
+
+      return newCategories;
     });
-    console.log("selectedCategories: ", selectedCategories);
   }
 
   function toggleSize(size: string) {
     setCurrentPage(1);
 
-    setSelectedSizes((prev) =>
-      prev.includes(size) ? prev.filter((s) => s !== size) : [...prev, size]
-    );
+    setSelectedSizes((prev) => {
+      const newSizes = prev.includes(size)
+        ? prev.filter((s) => s !== size)
+        : [...prev, size];
+
+      const categoriesParam =
+        selectedCategories.length > 0
+          ? `&categories=${selectedCategories.join(",")}`
+          : "";
+      const sizesParam =
+        newSizes.length > 0 ? `&sizes=${newSizes.join(",")}` : "";
+      const colorsParam =
+        selectedColors.length > 0 ? `&colors=${selectedColors.join(",")}` : "";
+
+      router.push(
+        `/shop?page=1&limit=${itemsPerPage}${categoriesParam}${sizesParam}${colorsParam}`
+      );
+
+      return newSizes;
+    });
   }
 
   function toggleColor(color: string) {
-    setSelectedColors((prev) =>
-      prev.includes(color) ? prev.filter((c) => c !== color) : [...prev, color]
-    );
     setCurrentPage(1);
+
+    setSelectedColors((prev) => {
+      const newColors = prev.includes(color)
+        ? prev.filter((c) => c !== color)
+        : [...prev, color];
+
+      const categoriesParam =
+        selectedCategories.length > 0
+          ? `&categories=${selectedCategories.join(",")}`
+          : "";
+      const sizesParam =
+        selectedSizes.length > 0 ? `&sizes=${selectedSizes.join(",")}` : "";
+      const colorsParam =
+        newColors.length > 0 ? `&colors=${newColors.join(",")}` : "";
+
+      router.push(
+        `/shop?page=1&limit=${itemsPerPage}${categoriesParam}${sizesParam}${colorsParam}`
+      );
+
+      return newColors;
+    });
   }
 
   return (
