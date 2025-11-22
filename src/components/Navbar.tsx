@@ -67,6 +67,14 @@ export default function Header() {
                 </li>
                 <li>
                   <a
+                    href="/about"
+                    className="text-gray-700 hover:text-gray-900 font-medium"
+                  >
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a
                     href="/contact"
                     className="text-gray-700 hover:text-gray-900 font-medium"
                   >
@@ -122,6 +130,11 @@ export default function Header() {
               <li>
                 <a href="/blog" className="text-gray-700 hover:text-gray-900">
                   Blog
+                </a>
+              </li>
+              <li>
+                <a href="/about" className="text-gray-700 hover:text-gray-900">
+                  About
                 </a>
               </li>
               <li>

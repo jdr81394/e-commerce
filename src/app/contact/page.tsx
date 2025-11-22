@@ -74,7 +74,7 @@ export default function ContactPage() {
                       Address
                     </h6>
                     <p className="text-gray-600 ml-6">
-                      160 Pennsylvania Ave NW, Washington, Castle, PA 16101-5161
+                      New Brunswick, NJ 08901
                     </p>
                   </div>
 
@@ -85,8 +85,7 @@ export default function ContactPage() {
                       Phone
                     </h6>
                     <div className="ml-6 space-y-1">
-                      <p className="text-gray-600">125-711-811</p>
-                      <p className="text-gray-600">125-668-886</p>
+                      <p className="text-gray-600">732-991-9233</p>
                     </div>
                   </div>
 
@@ -96,7 +95,7 @@ export default function ContactPage() {
                       <i className="fa fa-headphones text-lg"></i>
                       Support
                     </h6>
-                    <p className="text-gray-600 ml-6">support@ashion.com</p>
+                    <p className="text-gray-600 ml-6">jdr81394@gmail.com</p>
                   </div>
                 </div>
               </div>
@@ -165,7 +164,7 @@ export default function ContactPage() {
             {/* Google Map */}
             <div className="h-full min-h-96">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48158.305462977965!2d-74.13283844036356!3d41.02757295168286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2e440473470d7%3A0xcaf503ca2ee57958!2sSaddle%20River%2C%20NJ%2007458%2C%20USA!5e0!3m2!1sen!2sbd!4v1575917275626!5m2!1sen!2sbd"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24310.10447844808!2d-74.46573859999999!3d40.4862157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c3c6881e607b61%3A0x34f7a3eaf647ae8f!2sNew%20Brunswick%2C%20NJ%2008901!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
                 className="w-full h-full rounded-lg"
                 style={{ border: 0, minHeight: "500px" }}
                 allowFullScreen={true}
