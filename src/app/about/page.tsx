@@ -246,14 +246,44 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Why This Project Section */}
+      {/* Technology Stack Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
-              <i className="fa fa-bullseye text-gray-900"></i>
+            <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
+              <div className="mb-12">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  Technology Stack
+                </h3>
+                <div className="flex flex-wrap gap-4">
+                  <span className="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">
+                    Next.js
+                  </span>
+                  <span className="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">
+                    React
+                  </span>
+                  <span className="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">
+                    TypeScript
+                  </span>
+                  <span className="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">
+                    Tailwind CSS
+                  </span>
+                  <span className="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">
+                    Node.js
+                  </span>
+                  <span className="bg-yellow-100 text-yellow-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">
+                    Vercel
+                  </span>
+                  <span className="bg-purple-100 text-purple-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">
+                    OpenAI
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
               Why This Project Represents My Work
-            </h2>
+            </h3>
 
             <p className="text-lg text-gray-700 leading-relaxed mb-6">
               This demo site ties directly into the work I've done on production
