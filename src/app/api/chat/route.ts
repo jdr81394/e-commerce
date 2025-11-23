@@ -18,6 +18,8 @@ export async function POST(req: NextRequest) {
     const aboutContext = `
 About Jake Roberts (Developer of this site):
 Jake Roberts is a Full-Stack Engineer and AWS Certified Solutions Architect with seven years of experience designing, delivering, and scaling high-impact applications across e-commerce, cloud infrastructure, and AI-powered systems. He specializes in React, Next.js, Node.js/NestJS, and AWS microservices.
+You can call Jake at 732-991-9233 or email him at jdr81394@gmail.com
+You can also call Jake's AI shopping assistant at +1 (855) 412-1307
 
 Key Accomplishments:
 - Led teams and delivered systems used by thousands of real customers

@@ -82,10 +82,20 @@ export default function ContactPage() {
                   <div>
                     <h6 className="flex items-center gap-2 font-semibold text-gray-900 mb-2">
                       <i className="fa fa-phone text-lg"></i>
-                      Phone
+                      Jake's Phone
                     </h6>
                     <div className="ml-6 space-y-1">
                       <p className="text-gray-600">732-991-9233</p>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h6 className="flex items-center gap-2 font-semibold text-gray-900 mb-2">
+                      <i className="fa fa-phone text-lg"></i>
+                      Automated AI Shopping Assistant Phone
+                    </h6>
+                    <div className="ml-6 space-y-1">
+                      <p className="text-gray-600">+1 (855) 412-1307</p>
                     </div>
                   </div>
 
