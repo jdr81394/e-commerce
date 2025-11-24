@@ -1,8 +1,13 @@
 import { notFound } from "next/navigation";
 
-export default function CatchAll({ params }: { params: { slug: string[] } }) {
+export default async function CatchAll({
+  params,
+}: {
+  params: Promise<{ slug: string[] }>;
+}) {
   // Log unmatched routes for debugging/analytics
-  const attemptedPath = `/${params?.slug?.join("/")}`;
+  const { slug } = await params;
+  const attemptedPath = `/${slug?.join("/")}`;
   console.log(`[404] Unmatched route accessed: ${attemptedPath}`);
   notFound();
 }

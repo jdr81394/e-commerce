@@ -153,18 +153,18 @@ export default function ChatBox() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50">
       {/* Chat Box */}
       {isOpen && (
-        <div className="mb-4 w-96 h-[500px] bg-white rounded-lg shadow-2xl flex flex-col border border-gray-200 animate-slideUp">
+        <div className="mb-4 w-[calc(100vw-2rem)] sm:w-96 h-[500px] bg-white rounded-lg shadow-2xl flex flex-col border border-gray-200 animate-slideUp">
           {/* Header */}
-          <div className="bg-gray-900 text-white px-6 py-4 rounded-t-lg flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center">
-                <i className="fa fa-headset text-lg"></i>
+          <div className="bg-gray-900 text-white px-4 sm:px-6 py-4 rounded-t-lg flex items-center justify-between">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gray-700 rounded-full flex items-center justify-center">
+                <i className="fa fa-headset text-sm sm:text-lg"></i>
               </div>
               <div>
-                <h3 className="font-bold text-lg">Chat Support</h3>
+                <h3 className="font-bold text-base sm:text-lg">Chat Support</h3>
                 <p className="text-xs text-gray-300">Online</p>
               </div>
             </div>
@@ -186,7 +186,7 @@ export default function ChatBox() {
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 bg-gray-50 space-y-4">
+          <div className="flex-1 overflow-y-auto p-3 sm:p-4 bg-gray-50 space-y-4">
             {messages.map((message) => (
               <div
                 key={message.id}
@@ -195,7 +195,7 @@ export default function ChatBox() {
                 }`}
               >
                 <div
-                  className={`max-w-[75%] rounded-lg px-4 py-2 ${
+                  className={`max-w-[85%] sm:max-w-[75%] rounded-lg px-3 sm:px-4 py-2 ${
                     message.sender === "user"
                       ? "bg-gray-900 text-white"
                       : "bg-white text-gray-900 border border-gray-200"
@@ -240,7 +240,7 @@ export default function ChatBox() {
           {/* Input */}
           <form
             onSubmit={handleSendMessage}
-            className="p-4 bg-white border-t border-gray-200 rounded-b-lg"
+            className="p-3 sm:p-4 bg-white border-t border-gray-200 rounded-b-lg"
           >
             <div className="flex gap-2">
               <input
@@ -248,11 +248,11 @@ export default function ChatBox() {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Type your message..."
-                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900 text-sm"
+                className="flex-1 px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900 text-sm"
               />
               <button
                 type="submit"
-                className="bg-gray-900 hover:bg-gray-800 text-white px-4 py-2 rounded-lg transition cursor-pointer"
+                className="bg-gray-900 hover:bg-gray-800 text-white px-3 sm:px-4 py-2 rounded-lg transition cursor-pointer"
               >
                 <i className="fa fa-paper-plane"></i>
               </button>
@@ -264,12 +264,12 @@ export default function ChatBox() {
       {/* Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-gray-900 hover:bg-gray-800 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 cursor-pointer"
+        className="bg-gray-900 hover:bg-gray-800 text-white w-12 h-12 sm:w-14 sm:h-14 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 cursor-pointer"
       >
         {isOpen ? (
-          <i className="fa fa-times text-xl"></i>
+          <i className="fa fa-times text-lg sm:text-xl"></i>
         ) : (
-          <i className="fa fa-comment-dots text-xl"></i>
+          <i className="fa fa-comment-dots text-lg sm:text-xl"></i>
         )}
       </button>
 
